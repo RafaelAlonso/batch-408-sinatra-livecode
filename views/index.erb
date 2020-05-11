@@ -1,0 +1,33 @@
+<!-- html normal -->
+<h1>Restaurants</h1>
+
+<!-- form HTML -->
+<!-- envia as informações para a url "localhost:4567/new_restaurant"
+     através de uma requisição do tipo POST -->
+<form action="/new_restaurant" method="post">
+  <!-- o atributo "name" nos inputs é importante. Através dele que
+       encontramos o que o usuário escreveu quando estamos no controller -->
+  <input type="text" placeholder="Restaurant name" name="restaurant_name">
+  <input type="text" placeholder="Restaurant address" name="restaurant_address">
+
+  <!-- Esse input type="submit" é necessário para submeter o form -->
+  <input type="submit" value="Create new restaurant!">
+
+  <!-- (Obs.: sabia que o que estamos mandando aqui fica guarado dentro
+        da hash params?) -->
+</form>
+
+
+<!-- Para cada restaurante que recebemos -->
+<% @restaurants.each do |restaurant| %>
+  <!-- Cria um h2 -->
+  <h2>
+    <!-- dentro do h2 cria um link -->
+    <a href="/restaurant_details/<%= restaurant.id %>">
+      <!-- o texto do link -->
+      <%= "- #{restaurant.name} (#{restaurant.address})" %>
+    </a>
+  </h2>
+
+<% end %>
+
